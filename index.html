@@ -535,7 +535,7 @@ footer {
 
   /* Piliers (Images) */
   .pillars-grid {
-    grid-template-columns: 1fr; /* Un seul pilier par ligne */
+    grid-template-columns: 1fr; 
     height: auto;
   }
   
@@ -544,11 +544,50 @@ footer {
   }
 
   /* Sections à 3 colonnes (Impact) */
-  .impact-cols {
-    grid-template-columns: 1fr;
-    margin-left: 0;
-    gap: 30px;
+/* ══ AJUSTEMENT SPÉCIFIQUE IMPACT RESPONSIVE ══ */
+@media (max-width: 768px) {
+  
+  .impact-section {
+    padding: 40px 20px;
+    margin-left: 0; /* On retire la marge de 20px pour utiliser tout l'écran */
+    text-align: center;
   }
+
+  .impact-section .eyebrow, 
+  .impact-section .section-title, 
+  .impact-section .section-sub {
+    margin-left: 0; /* On centre les titres sur mobile */
+  }
+
+  .impact-cols {
+    display: flex;
+    flex-direction: column; /* On empile les colonnes verticalement */
+    gap: 40px;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .impact-col {
+    margin-left: 0;
+    padding: 0 10px;
+  }
+
+  .impact-col h3 {
+    font-size: 22px; 
+    margin-bottom: 15px;
+    color: #142696; 
+  }
+
+  .impact-col ul {
+    padding: 0;
+  }
+
+  .impact-col li {
+    font-size: 18px; 
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+}
 
   /* Sections à 2 colonnes (Organisation) */
   .two-col {
