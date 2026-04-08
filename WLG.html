@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Water Leak Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #F3F4F9;
+  --btn: #142696;
+  --white: #ffffff;
+  --text: #1a1a2e;
+  --muted: #5a5b6e;
+  --border: #dde0ed;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  font-size: 18px; 
+  line-height: 1.6;
+}
+
+/* ══ NAV ══ */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Pousse le logo à gauche et le bouton à droite */
+  padding: 0 50px;
+  height: 80px;
+  background: #ffffff;
+  border-bottom: 1px solid #dde0ed;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 500;
+  color: #1a1a2e;
+}
+
+.logo-w {
+  background: #142696;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+  font-weight: 700;
+}
+
+.logo-group {
+  color: #142696;
+  font-weight: 700;
+}
+
+/* CENTRAGE ABSOLU DU MENU */
+.nav-links {
+  display: flex;
+  gap: 35px;
+  list-style: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); /* C'est ça qui centre parfaitement par rapport à l'écran */
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #5a5b6e; /* Gris pour les liens inactifs */
+  font-weight: 500;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.nav-links a.active, .nav-links a:hover {
+  color: #1a1a2e; /* Noir/Bleu foncé pour le menu actif */
+}
+
+/* BOUTON CONTACT */
+.btn-contact {
+  background: #142696;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+/* ══ HERO ══ */
+.hero {
+  background-color: #F3F4F9;
+  padding: 30px 550px 60px 50px; 
+  display: flex;
+  justify-content: flex-start;
+}
+
+.hero h1 {
+  font-size: 38px;
+  line-height: 1.3;
+  color: #1a1a2e;
+  font-weight: 500; 
+  margin-bottom: 30px;
+}
+
+.hero h1 strong {
+  font-weight: 700; 
+}
+
+.hero p {
+  font-size: 20px;
+  font-weight: 300; 
+  color: #5a5b6e;
+  line-height: 1.6;
+  margin-bottom: 50px;
+  max-width: 850px;
+    margin-bottom: 30px;
+
+}
+
+.stats-bar {
+  display: flex;
+  gap: 40px; 
+  padding-top: 20px;
+  justify-content: flex-start; 
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  text-align: center;  
+  min-width: 200px;   
+}
+
+.stat-val {
+  font-size: 30px;
+  font-weight: 600;
+  color: #142696;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.stat-lbl {
+  font-size: 18px;
+  font-weight: 300; 
+  color: #5a5b6e;
+  line-height: 1.3;
+  width: 100%; 
+  white-space: nowrap;
+}
+
+
+/* ══ MODEL HEADER ══ */
+.model-header {
+  padding: 25px 60px 0;
+  text-align: center;
+}
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--btn);
+  margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.section-sub {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-weight: 300;
+  margin-bottom: 34px;
+}
+
+/* ══ PILIERS ══ */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  height: 400px;
+}
+.pillar {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.pillar-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform .55s cubic-bezier(.25,.46,.45,.94);
+}
+.pillar:hover .pillar-img { transform: scale(1.07); }
+
+.pillar-dim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.30);
+  transition: opacity .4s ease;
+  z-index: 1;
+}
+.pillar:hover .pillar-dim { opacity: 0; }
+
+.pillar-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity .4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 36px 32px;
+}
+.pillar:hover .pillar-overlay { opacity: 1; }
+
+.pillar:nth-child(1) .pillar-overlay { background: rgba(70, 185, 110, 0.90); }
+.pillar:nth-child(2) .pillar-overlay { background: rgba(220, 95, 25, 0.90); }
+.pillar:nth-child(3) .pillar-overlay { background: rgba(238, 192, 10, 0.90); }
+
+.pillar-ov-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.pillar-ov-desc {
+  font-size: 13.5px;
+  color: rgba(255,255,255,.92);
+  font-weight: 300;
+  line-height: 1.55;
+}
+
+.pillar-label {
+  position: absolute;
+  bottom: 22px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 3;
+  transition: opacity .3s;
+}
+.pillar:hover .pillar-label { opacity: 0; }
+
+.pillar:nth-child(1) .pillar-label-txt { color: #80ec9e; }
+.pillar:nth-child(2) .pillar-label-txt { color: #f5a830; }
+.pillar:nth-child(3) .pillar-label-txt { color: #f7e040; }
+
+.pillar-label-txt {
+  font-size: 17px;
+  font-weight: 700;
+  text-shadow: 0 1px 8px rgba(0,0,0,.55);
+}
+
+/* ══ IMPACT ══ */
+.impact-section {
+  padding: 64px 60px;
+  background: var(--white);
+}
+.impact-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 10px;
+}
+.impact-col h3 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+.impact-col li {
+  list-style: none;
+  font-size: 13.5px;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.9;
+}
+
+/* ══ DÉPLOIEMENT ══ */
+.deploy-section {
+  background: var(--bg);
+  padding: 64px 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.deploy-eyebrow { text-align: left; }
+.deploy-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+  margin: 8px 0 14px;
+}
+.deploy-intro {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 300;
+  max-width: 320px;
+  margin-bottom: 16px;
+}
+.deploy-list {
+  list-style: none;
+}
+.deploy-list li {
+  font-size: 14px;
+  color: var(--muted);
+  padding: 4px 0;
+  text-align: center;
+  font-weight: 400;
+}
+.map-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.map-wrap svg {
+  width: 100%;
+  max-width: 360px;
+  opacity: .14;
+}
+
+/* ══ ORG + INSTITUTIONNEL ══ */
+.two-col {
+  padding: 64px 60px;
+  background: var(--white);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+.col-eyebrow { text-align: left; }
+.col-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 27px;
+  font-weight: 700;
+  margin: 8px 0 12px;
+}
+.col-body {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+.org-list {
+  list-style: none;
+  margin-top: 4px;
+}
+.org-list li {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-weight: 300;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+.org-list li:first-child { border-top: 1px solid var(--border); }
+
+/* ══ VISION ══ */
+.vision {
+  background: var(--bg);
+  padding: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+.vision h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--btn);
+  margin-bottom: 14px;
+}
+.vision p {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 300;
+  max-width: 360px;
+  line-height: 1.7;
+}
+.vision-btns { display: flex; gap: 12px; flex-shrink: 0; }
+.btn-o {
+  padding: 11px 28px;
+  border: 2px solid var(--btn);
+  border-radius: 6px;
+  color: var(--btn);
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  background: transparent;
+  transition: all .2s;
+  cursor: pointer;
+}
+.btn-o:hover { background: var(--btn); color: #fff; }
+.btn-s {
+  padding: 11px 28px;
+  background: var(--btn);
+  border: 2px solid var(--btn);
+  border-radius: 6px;
+  color: #fff;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background .2s;
+  cursor: pointer;
+}
+.btn-s:hover { background: #0e1e7a; }
+
+/* ══ FOOTER ══ */
+footer {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  padding: 44px 60px;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.f-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-family: 'Outfit', sans-serif;
+  font-size: 19px;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.f-addr {
+  font-style: normal;
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.7;
+}
+.f-links { list-style: none; }
+.f-links li { margin-bottom: 10px; }
+.f-links a {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-weight: 300;
+  text-decoration: none;
+}
+.f-links a:hover { color: var(--btn); }
+.f-phone { display: flex; justify-content: flex-end; }
+.f-phone-btn {
+  background: var(--btn);
+  color: #fff;
+  padding: 11px 22px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  font-family: 'Outfit', sans-serif;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <span class="logo-w">W</span>ater Leak <span class="logo-group">Group</span>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#" class="active">Accueil</a></li>
+    <li><a href="#">Modèle opérationnel</a></li>
+    <li><a href="#">Objectifs & Impact</a></li>
+    <li><a href="#">Déploiement</a></li>
+  </ul>
+
+  <a href="#" class="btn-contact">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>
+      <strong>Water Leak Group</strong> est un groupe structuré spécialisé dans la détection de fuite non destructive, 
+      la formation professionnelle et la distribution d'équipements spécialisés.
+    </h1>
+    <p>
+      Le groupe développe un modèle intégré visant à répondre aux enjeux liés aux <br> 
+      pertes d'eau à l'échelle de Maurice et de l'océan Indien.
+    </p>
+
+    <div class="stats-bar">
+      <div class="stat">
+        <span class="stat-val">+30 000</span>
+        <span class="stat-lbl">Interventions réalisées</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">+15 ans</span>
+        <span class="stat-lbl">D'expérience terrain</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">Expertise</span>
+        <span class="stat-lbl">Issue du terrain français</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">Vision</span>
+        <span class="stat-lbl">Modèle durable et reproductible</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODÈLE OPÉRATIONNEL -->
+<div class="model-header">
+  <p class="eyebrow">Modèle opérationnel</p>
+  <h2 class="section-title">Trois piliers, une filière complète</h2>
+  <p class="section-sub">Cette structuration permet de créer une filière complète.</p>
+</div>
+
+<div class="pillars-grid">
+  <div class="pillar">
+    <div class="pillar-img" style="background-image:url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=900&q=80');"></div>
+    <div class="pillar-dim"></div>
+    <div class="pillar-overlay">
+      <div class="pillar-ov-title">Water Leak Academy</div>
+      <div class="pillar-ov-desc">Formation professionnelle avec démarche de certification</div>
+    </div>
+    <div class="pillar-label"><span class="pillar-label-txt">Water Leak Academy</span></div>
+  </div>
+
+  <div class="pillar">
+    <div class="pillar-img" style="background-image:url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=900&q=80');"></div>
+    <div class="pillar-dim"></div>
+    <div class="pillar-overlay">
+      <div class="pillar-ov-title">Water Leak Expert</div>
+      <div class="pillar-ov-desc">Activité opérationnelle terrain</div>
+    </div>
+    <div class="pillar-label"><span class="pillar-label-txt">Water Leak Expert</span></div>
+  </div>
+
+  <div class="pillar">
+    <div class="pillar-img" style="background-image:url('https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=900&q=80');"></div>
+    <div class="pillar-dim"></div>
+    <div class="pillar-overlay">
+      <div class="pillar-ov-title">Water Leak Equipment</div>
+      <div class="pillar-ov-desc">Distribution d'équipements spécialisés</div>
+    </div>
+    <div class="pillar-label"><span class="pillar-label-txt">Water Leak Equipment</span></div>
+  </div>
+</div>
+
+<!-- OBJECTIFS & IMPACT -->
+<section class="impact-section">
+  <p class="eyebrow" style="text-align:center;">Objectifs et impact</p>
+  <h2 class="section-title" style="text-align:center;">Impact opérationnel sur 5 ans</h2>
+  <p class="section-sub" style="text-align:center;">Le projet vise à structurer durablement le secteur de la détection de fuite non destructive.</p>
+  <div class="impact-cols">
+    <div class="impact-col">
+      <h3>Impact opérationnel :</h3>
+      <ul>
+        <li>5 000 interventions (année 1)</li>
+        <li>35 000 interventions (année 3)</li>
+        <li>65 000 interventions (année 5)</li>
+      </ul>
+    </div>
+    <div class="impact-col">
+      <h3>Impact environnemental :</h3>
+      <ul>
+        <li>Réduction significative des pertes d'eau</li>
+        <li>Contribution à la réduction des émissions indirectes de CO₂</li>
+      </ul>
+    </div>
+    <div class="impact-col">
+      <h3>Formation :</h3>
+      <ul>
+        <li>40 techniciens formés par an</li>
+        <li>200 techniciens formés à horizon 5 ans</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- DÉPLOIEMENT -->
+<section class="deploy-section">
+  <div>
+    <p class="eyebrow deploy-eyebrow">Déploiement régional</p>
+    <h2 class="deploy-title">Océan Indien</h2>
+    <p class="deploy-intro">Le groupe est basé à Maurice avec un déploiement prévu dans l'océan Indien :</p>
+    <ul class="deploy-list">
+      <li>Maurice</li>
+      <li>La Réunion</li>
+      <li>Madagascar</li>
+      <li>Seychelles</li>
+      <li>Comores</li>
+    </ul>
+  </div>
+  <div class="map-wrap">
+    <svg viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg" fill="#142696">
+      <path d="M220,28 L282,28 L312,82 L322,132 L302,182 L272,212 L250,232 L228,212 L198,182 L184,132 L190,82 Z"/>
+      <ellipse cx="286" cy="248" rx="14" ry="21"/>
+      <path d="M128,58 L182,53 L197,102 L182,152 L150,162 L118,130 L108,88 Z"/>
+      <path d="M58,98 L80,108 L86,160 L76,222 L60,282 L44,302 L33,258 L39,198 L44,148 Z"/>
+      <path d="M152,248 L176,238 L186,270 L181,322 L166,352 L149,342 L138,300 L143,263 Z"/>
+      <ellipse cx="210" cy="332" rx="11" ry="9"/>
+      <ellipse cx="190" cy="337" rx="10" ry="8"/>
+      <ellipse cx="174" cy="213" rx="7" ry="6"/>
+      <ellipse cx="128" cy="263" rx="9" ry="6"/>
+      <ellipse cx="250" cy="272" rx="5" ry="19"/>
+      <path d="M388,198 L462,188 L482,252 L462,322 L420,362 L378,342 L358,280 L363,228 Z"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ORGANISATION & INSTITUTIONNEL -->
+<section class="two-col">
+  <div>
+    <p class="eyebrow col-eyebrow">Organisation</p>
+    <h2 class="col-title">Organisation centralisée</h2>
+    <p class="col-body">Le groupe s'appuie sur une organisation centralisée permettant :</p>
+    <ul class="org-list">
+      <li>Coordination des interventions</li>
+      <li>Planification des équipes</li>
+      <li>Suivi des opérations</li>
+      <li>Standardisation des pratiques</li>
+    </ul>
+  </div>
+  <div>
+    <p class="eyebrow col-eyebrow">Positionnement institutionnel</p>
+    <h2 class="col-title">Programmes UE · AFD</h2>
+    <p class="col-body">Le projet s'inscrit dans une dynamique de structuration du secteur de l'eau, en lien avec des partenaires institutionnels et programmes internationaux (UE / AFD).</p>
+  </div>
+</section>
+
+<!-- VISION -->
+<section class="vision">
+  <div>
+    <h2>Vision</h2>
+    <p>Mettre en place un modèle structuré, durable et reproductible de gestion des pertes d'eau à l'échelle régionale.</p>
+  </div>
+  <div class="vision-btns">
+    <a href="#" class="btn-o">Prendre contact</a>
+    <a href="#" class="btn-s">Informations</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="#" class="f-logo">
+      <span class="logo-w">W</span><span style="font-weight:400;color:#1a1a2e;">ater Leak</span><span style="color:#142696;font-weight:700;margin-left:5px;">Group</span>
+    </a>
+    <address class="f-addr">Coastal Road – Grand Baie<br>Mauritius</address>
+  </div>
+  <ul class="f-links">
+    <li><a href="#">Accueil</a></li>
+    <li><a href="#">Modèle opérationnel</a></li>
+    <li><a href="#">Objectifs &amp; Impact</a></li>
+    <li><a href="#">Déploiement</a></li>
+  </ul>
+  <div class="f-phone">
+    <a href="tel:+23057928639" class="f-phone-btn">+230 5792 8639</a>
+  </div>
+</footer>
+
+</body>
+</html>
