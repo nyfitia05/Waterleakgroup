@@ -110,6 +110,8 @@ nav {
   display: flex;
   flex-direction: column; 
   justify-content: flex-start;
+  align-items: center; 
+  text-align: center;
 }
 
 .hero h1 {
@@ -118,8 +120,9 @@ nav {
   color: #1a1a2e;
   font-weight: 500; 
   margin-bottom: 30px;
-  margin-left: 30px; 
-    max-width: 900px;
+margin-left: auto;
+margin-right: auto;
+  max-width: 1000px;
 
 }
 
@@ -132,9 +135,9 @@ nav {
   font-weight: 300; 
   color: #5a5b6e;
   line-height: 1.6;
-  max-width: 850px;
+  width: 2000px;
   margin-bottom: 30px;
-  margin-left: 30px;
+  margin: 0 auto 30px auto;
 }
 
 .stats-bar {
@@ -143,6 +146,7 @@ nav {
   padding-top: 20px;
   justify-content: flex-start;
   margin-left: 30px; 
+  justify-content: center;
 }
 
 .stat {
@@ -240,21 +244,21 @@ nav {
 }
 .pillar:hover .pillar-overlay { opacity: 1; }
 
-.pillar:nth-child(1) .pillar-overlay { background: rgba(70, 185, 110, 0.90); }
-.pillar:nth-child(2) .pillar-overlay { background: rgba(220, 95, 25, 0.90); }
-.pillar:nth-child(3) .pillar-overlay { background: rgba(238, 192, 10, 0.90); }
+.pillar:nth-child(1) .pillar-overlay { background: rgba(179, 253, 113, 0.90); }
+.pillar:nth-child(2) .pillar-overlay { background: rgba(255, 107, 26, 0.90); }
+.pillar:nth-child(3) .pillar-overlay { background: rgba(233, 255, 10, 0.90) }
 
 .pillar-ov-title {
   font-size: 30px;
   font-weight: 700;
-  color: #fff;
+  color: #000000;
   margin-bottom: 10px;
   margin-left: auto;  
   margin-right: auto;
 }
 .pillar-ov-desc {
   font-size: 20px;
-  color: rgba(255,255,255,.92);
+  color: rgba(0, 0, 0, 0.92);
   font-weight: 300;
   line-height: 1.55;
   max-width: 280px; 
@@ -273,9 +277,9 @@ nav {
 }
 .pillar:hover .pillar-label { opacity: 0; }
 
-.pillar:nth-child(1) .pillar-label-txt { color: #80ec9e; font-size: 30px; margin-bottom: 150px; display: block;}
-.pillar:nth-child(2) .pillar-label-txt { color: #f5a830; font-size: 30px; margin-bottom: 150px; display: block; }
-.pillar:nth-child(3) .pillar-label-txt { color: #f7e040; font-size: 30px; margin-bottom: 150px; display: block;}
+.pillar:nth-child(1) .pillar-label-txt { color: #B3FD71; font-size: 30px; margin-bottom: 150px; display: block;}
+.pillar:nth-child(2) .pillar-label-txt { color: #FF6B1A; font-size: 30px; margin-bottom: 150px; display: block; }
+.pillar:nth-child(3) .pillar-label-txt { color: #E9FF0A; font-size: 30px; margin-bottom: 150px; display: block;}
 
 .pillar-label-txt {
   font-size: 17px;
@@ -464,7 +468,7 @@ footer {
   font-size: 19px;
   color: var(--text);
   margin-bottom: 12px;
-  margin-right: 10px;
+  margin-right: 40px;
 }
 .f-addr {
   font-style: normal;
@@ -472,26 +476,36 @@ footer {
   color: var(--muted);
   font-weight: 300;
   line-height: 1.7;
+  margin-right: 40px;
+
 }
-.f-links { list-style: none; }
-.f-links li { margin-bottom: 10px; }
+.f-links { 
+  list-style: none; 
+  display: flex;         
+  gap: 100px;          
+  justify-content: center; 
+  align-items: center; }
+
+.f-links li { margin-bottom: 0; }
 .f-links a {
-  font-size: 20px;
-  color: var(--muted);
-  font-weight: 300;
-  text-decoration: none;
+text-decoration: none;
+  color: #5a5b6e;      /* Même couleur que le header */
+  font-weight: 500;
+  font-size: 16px;     /* Même taille que le header */
+  transition: 0.3s;
 }
-.f-links a:hover { color: var(--btn); }
+.f-links a:hover { color: #1a1a2e; }
 .f-phone { display: flex; justify-content: flex-end; }
 .f-phone-btn {
   background: var(--btn);
   color: #fff;
   padding: 11px 22px;
-  border-radius: 6px;
+  border-radius: 60px;
   font-size: 20px;
   font-weight: 600;
   text-decoration: none;
   font-family: 'Outfit', sans-serif;
+  margin-right: -450px;
 }
 /* ══ RESPONSIVE (MOBILE) ══ */
 @media (max-width: 768px) {
@@ -543,7 +557,6 @@ footer {
     height: 300px;
   }
 
-  /* Sections à 3 colonnes (Impact) */
 /* ══ AJUSTEMENT SPÉCIFIQUE IMPACT RESPONSIVE ══ */
 @media (max-width: 768px) {
   
@@ -687,7 +700,7 @@ footer {
 </section>
 
 <!-- MODÈLE OPÉRATIONNEL -->
-<div id="section-piliers" class="model-header">  <p class="eyebrow">Modèle opérationnel</p>
+<div id="section-piliers" class="model-header">  
   <h2 class="section-title">Trois piliers, une filière complète</h2>
   <p class="section-sub">Cette structuration permet de créer une filière complète.</p>
 </div>
@@ -725,7 +738,7 @@ footer {
 </div>
 
 <!-- OBJECTIFS & IMPACT -->
-<section id="section-impact" class="impact-section">  <p class="eyebrow" style="text-align:center;">Objectifs et impact</p>
+<section id="section-impact" class="impact-section"> 
   <h2 class="section-title" style="text-align:center;">Impact opérationnel sur 5 ans</h2>
   <p class="section-sub" style="text-align:center;">Le projet vise à structurer durablement le secteur de la détection de fuite non destructive.</p>
   <div class="impact-cols">
@@ -741,7 +754,7 @@ footer {
       <h3>Impact environnemental :</h3>
       <ul>
         <li>Réduction significative des pertes d'eau</li>
-        <li>Contribution à la réduction des émissions indirectes de CO₂</li>
+        <li>Contribution à la réduction des émissions <br> indirectes de CO₂</li>
       </ul>
     </div>
     <div class="impact-col">
@@ -756,10 +769,7 @@ footer {
 
 <!-- DÉPLOIEMENT -->
 <section id="section-deploy" class="deploy-section">  <div class="deploy-container">
-    <p class="eyebrow deploy-eyebrow">DÉPLOIEMENT RÉGIONAL</p>
-    <h2 class="deploy-title">Océan Indien</h2>
-    <p class="deploy-intro">Le groupe est basé à Maurice avec un déploiement prévu dans l'océan Indien :</p>
-    
+    <h2 class="deploy-title">Le groupe est basé à Maurice avec un déploiement prévu dans l'océan Indien</h2>    
     <div class="deploy-list-simple">
       <p>Maurice</p>
       <p>La Réunion</p>
@@ -773,7 +783,6 @@ footer {
 <!-- ORGANISATION & INSTITUTIONNEL -->
 <section class="two-col">
   <div>
-    <p class="eyebrow col-eyebrow">Organisation</p>
     <h2 class="col-title">Organisation centralisée</h2>
     <p class="col-body">Le groupe s'appuie sur une organisation centralisée permettant :</p>
     <ul class="org-list">
@@ -784,7 +793,6 @@ footer {
     </ul>
   </div>
   <div>
-    <p class="eyebrow col-eyebrow">Positionnement institutionnel</p>
     <h2 class="col-title">Programmes UE · AFD</h2>
     <p class="col-body">Le projet s'inscrit dans une dynamique de structuration du secteur de l'eau, en lien avec des partenaires institutionnels et programmes internationaux (UE / AFD).</p>
   </div>
@@ -809,12 +817,6 @@ footer {
 <img src="logo.png" alt="Water Leak Group" class="logo-img">    </a>
     <address class="f-addr">Coastal Road – Grand Baie<br>Mauritius</address>
   </div>
-  <ul class="f-links">
-    <li><a href="#">Accueil</a></li>
-    <li><a href="#">Modèle opérationnel</a></li>
-    <li><a href="#">Objectifs &amp; Impact</a></li>
-    <li><a href="#">Déploiement</a></li>
-  </ul>
   <div class="f-phone">
     <a href="tel:+23057928639" class="f-phone-btn">+230 5792 8639</a>
   </div>
