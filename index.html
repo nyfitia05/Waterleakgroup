@@ -315,17 +315,21 @@ margin-right: auto;
 
 /* ══ DÉPLOIEMENT ══ */
 .deploy-section {
-  padding: 30px 50px;
-  background: url('carte.png');
+  padding: 60px 50px;
+  /* On utilise uniquement l'image, sans rien d'autre */
+  background-image: url('carte.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  
+  /* On s'assure qu'il n'y a pas d'opacité sur toute la section */
+  opacity: 1; 
   
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-height: 400px;
+  min-height: 450px;
 }
 
 .deploy-container {
