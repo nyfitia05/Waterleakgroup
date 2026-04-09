@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Water Leak Group</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet"><style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
@@ -97,7 +96,7 @@ nav {
   background: #142696;
   color: white;
   padding: 10px 24px;
-  border-radius: 6px;
+  border-radius: 60px;
   text-decoration: none;
   font-weight: 500;
   font-size: 16px;
@@ -122,7 +121,8 @@ nav {
   margin-bottom: 30px;
 margin-left: auto;
 margin-right: auto;
-  max-width: 1000px;
+  max-width: 780px;
+  font-family: 'poppins', sans-serif;
 
 }
 
@@ -132,10 +132,10 @@ margin-right: auto;
 
 .hero p {
   font-size: 20px;
-  font-weight: 300; 
+  font-weight: 500; 
   color: #5a5b6e;
   line-height: 1.6;
-  width: 2000px;
+  width: 770px;
   margin-bottom: 30px;
   margin: 0 auto 30px auto;
 }
@@ -181,16 +181,16 @@ margin-right: auto;
 }
 .eyebrow {
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--btn);
   margin-bottom: 10px;
 }
 .section-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'poppins', serif;
   font-size: 34px;
-  font-weight: 700;
+  font-weight: 400;
   margin-bottom: 10px;
   line-height: 1.2;
 }
@@ -206,6 +206,7 @@ margin-right: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   height: 400px;
+  margin-top: 30px;
 }
 .pillar {
   position: relative;
@@ -283,7 +284,7 @@ margin-right: auto;
 
 .pillar-label-txt {
   font-size: 17px;
-  font-weight: 700;
+  font-weight: 400;
   text-shadow: 0 1px 8px rgba(0,0,0,.55);
 }
 
@@ -297,7 +298,7 @@ margin-right: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 .impact-col h3 {
   font-size: 20px;
@@ -306,7 +307,6 @@ margin-right: auto;
   color: var(--text);
 }
 .impact-col li {
-  list-style: none;
   font-size: 20px;
   color: var(--muted);
   font-weight: 300;
@@ -330,7 +330,7 @@ margin-right: auto;
 }
 
 .deploy-container {
-  max-width: 700px;
+  max-width: 900px;
 }
 
 .deploy-eyebrow {
@@ -340,10 +340,13 @@ margin-right: auto;
 }
 
 .deploy-title {
-  font-size: 38px;
-  font-weight: 700;
+  font-size: 34px;
+  font-weight: 400;
   color: #1a1a2e;
   margin-bottom: 10px;
+  font-family: poppins;
+    margin: 8px 0 12px;
+
 }
 
 .deploy-intro {
@@ -371,9 +374,9 @@ margin-right: auto;
 }
 .col-eyebrow { text-align: left; }
 .col-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 27px;
-  font-weight: 700;
+  font-family: 'poppins', serif;
+  font-size: 34px;
+  font-weight: 400;
   margin: 8px 0 12px;
 }
 .col-body {
@@ -384,14 +387,14 @@ margin-right: auto;
   margin-bottom: 10px;
 }
 .org-list {
-  list-style: none;
   margin-top: 4px;
 }
 .org-list li {
   font-size: 20px;
   color: var(--muted);
   font-weight: 300;
-  padding: 4px 0;
+  padding: 4px 5px;
+  margin-left: 20px;
 }
 
 /* ══ VISION ══ */
@@ -403,12 +406,14 @@ margin-right: auto;
   justify-content: space-between;
 }
 .vision h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 36px;
-  font-weight: 700;
+  font-family: 'poppins', serif;
+  font-size: 34px;
+  font-weight: 400;
   color: var(--btn);
   margin-bottom: 14px;
-    margin-left: 50px;
+  margin-left: 320px;
+    text-align: center;
+
 
 }
 .vision p {
@@ -417,7 +422,8 @@ margin-right: auto;
   font-weight: 300;
   max-width: 700px;
   line-height: 1.7;
-      margin-left: 50px;
+  margin-left: 320px;
+  text-align: center;
 
 }
 .vision-btns { display: flex; gap: 12px; flex-shrink: 0; }
@@ -460,6 +466,12 @@ footer {
   gap: 40px;
   align-items: start;
 }
+.f-branding {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;    
+  text-align: center;     
+}
 .f-logo {
   display: flex;
   align-items: center;
@@ -468,7 +480,7 @@ footer {
   font-size: 19px;
   color: var(--text);
   margin-bottom: 12px;
-  margin-right: 40px;
+  margin-right: 300px;
 }
 .f-addr {
   font-style: normal;
@@ -476,7 +488,8 @@ footer {
   color: var(--muted);
   font-weight: 300;
   line-height: 1.7;
-  margin-right: 40px;
+  margin-right: 300px;
+  text-align: center;
 
 }
 .f-links { 
@@ -505,7 +518,7 @@ text-decoration: none;
   font-weight: 600;
   text-decoration: none;
   font-family: 'Outfit', sans-serif;
-  margin-right: -450px;
+  margin-right: -410px;
 }
 /* ══ RESPONSIVE (MOBILE) ══ */
 @media (max-width: 768px) {
@@ -663,37 +676,31 @@ text-decoration: none;
   <li><a href="#section-deploy">Déploiement</a></li>
 </ul>
 
-  <a href="tel:+23057928639" class="btn-contact">Contact</a>
+  <a href="tel:+23057928639" class="btn-contact">+230 5792 8639</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
     <h1>
-      <strong>Water Leak Group</strong> est un groupe structuré spécialisé dans la détection de fuite non destructive, 
-      la formation professionnelle et la distribution d'équipements spécialisés.
+      Leader de la détection de fuites non destructive dans l’océan Indien
     </h1>
     <p>
-      Le groupe développe un modèle intégré visant à répondre aux enjeux liés aux <br> 
-      pertes d'eau à l'échelle de Maurice et de l'océan Indien.
+      Water Leak Group est un groupe structuré spécialisé dans la détection de fuite non destructive, la formation professionnelle et la distribution d’équipements spécialisés.
     </p>
 
     <div class="stats-bar">
       <div class="stat">
         <span class="stat-val">+30 000</span>
-        <span class="stat-lbl">Interventions réalisées</span>
+        <span class="stat-lbl">interventions </span>
       </div>
       <div class="stat">
         <span class="stat-val">+15 ans</span>
-        <span class="stat-lbl">D'expérience terrain</span>
+        <span class="stat-lbl">d’expertise</span>
       </div>
       <div class="stat">
-        <span class="stat-val">Expertise</span>
-        <span class="stat-lbl">Issue du terrain français</span>
-      </div>
-      <div class="stat">
-        <span class="stat-val">Vision</span>
-        <span class="stat-lbl">Modèle durable et reproductible</span>
+        <span class="stat-val">Savoir-faire</span>
+        <span class="stat-lbl">issu du terrain français</span>
       </div>
     </div>
   </div>
@@ -702,7 +709,6 @@ text-decoration: none;
 <!-- MODÈLE OPÉRATIONNEL -->
 <div id="section-piliers" class="model-header">  
   <h2 class="section-title">Trois piliers, une filière complète</h2>
-  <p class="section-sub">Cette structuration permet de créer une filière complète.</p>
 </div>
 
 <div class="pillars-grid">
@@ -739,11 +745,10 @@ text-decoration: none;
 
 <!-- OBJECTIFS & IMPACT -->
 <section id="section-impact" class="impact-section"> 
-  <h2 class="section-title" style="text-align:center;">Impact opérationnel sur 5 ans</h2>
-  <p class="section-sub" style="text-align:center;">Le projet vise à structurer durablement le secteur de la détection de fuite non destructive.</p>
+  <h2 class="section-title" style="text-align:center;">Impact et déploiement</h2>
   <div class="impact-cols">
     <div class="impact-col">
-      <h3>Impact opérationnel :</h3>
+      <h3>Déploiement opérationnel sur 5 ans</h3>
       <ul>
         <li>5 000 interventions (année 1)</li>
         <li>35 000 interventions (année 3)</li>
@@ -758,8 +763,9 @@ text-decoration: none;
       </ul>
     </div>
     <div class="impact-col">
-      <h3>Formation :</h3>
+      <h3>Développement de la formation</h3>
       <ul>
+        <li>Structuration d’une filière de techniciens spécialisés</li>
         <li>40 techniciens formés par an</li>
         <li>200 techniciens formés à horizon 5 ans</li>
       </ul>
@@ -769,13 +775,13 @@ text-decoration: none;
 
 <!-- DÉPLOIEMENT -->
 <section id="section-deploy" class="deploy-section">  <div class="deploy-container">
-    <h2 class="deploy-title">Le groupe est basé à Maurice avec un déploiement prévu dans l'océan Indien</h2>    
+    <h2 class="deploy-title">Le groupe est basé à Maurice et déploie ses opérations à l’échelle de l’océan Indien.</h2>    
     <div class="deploy-list-simple">
-      <p>Maurice</p>
+      <p>L’ Île Maurice</p>
       <p>La Réunion</p>
       <p>Madagascar</p>
-      <p>Seychelles</p>
-      <p>Comores</p>
+      <p>Les Seychelles</p>
+      <p>Les Comores</p>
     </div>
   </div>
 </section>
@@ -783,18 +789,18 @@ text-decoration: none;
 <!-- ORGANISATION & INSTITUTIONNEL -->
 <section class="two-col">
   <div>
-    <h2 class="col-title">Organisation centralisée</h2>
-    <p class="col-body">Le groupe s'appuie sur une organisation centralisée permettant :</p>
+    <h2 class="col-title">Organisation opérationnelle centralisée</h2>
+    <p class="col-body">Le groupe repose sur une organisation centralisée garantissant performance, réactivité et standardisation à grande échelle :</p>
     <ul class="org-list">
       <li>Coordination des interventions</li>
       <li>Planification des équipes</li>
-      <li>Suivi des opérations</li>
-      <li>Standardisation des pratiques</li>
+      <li>Suivi opérationnel en temps réel</li>
+      <li>Standardisation des méthodes</li>
     </ul>
   </div>
   <div>
-    <h2 class="col-title">Programmes UE · AFD</h2>
-    <p class="col-body">Le projet s'inscrit dans une dynamique de structuration du secteur de l'eau, en lien avec des partenaires institutionnels et programmes internationaux (UE / AFD).</p>
+    <h2 class="col-title">Ancrage institutionnel et programmes internationaux</h2>
+    <p class="col-body">Le groupe s’inscrit dans une dynamique de structuration du secteur de l’eau, en lien avec des partenaires institutionnels et des programmes internationaux, notamment soutenus par l’Union Européenne et l’Agence Française de Développement (AFD).</p>
   </div>
 </section>
 
@@ -802,21 +808,18 @@ text-decoration: none;
 <section class="vision">
   <div>
     <h2>Vision</h2>
-    <p>Mettre en place un modèle structuré, durable et reproductible de gestion des pertes d'eau à l'échelle régionale.</p>
-  </div>
-  <div class="vision-btns">
-    <a href="tel:+23057928639" class="btn-o">Prendre contact</a>
-    <a href="#" class="btn-s">Informations</a>
+    <p>Déployer un modèle structuré, durable et reproductible de gestion des pertes d’eau à l’échelle de l’océan Indien.</p>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div>
-    <a href="#" class="f-logo">
-<img src="logo.png" alt="Water Leak Group" class="logo-img">    </a>
-    <address class="f-addr">Coastal Road – Grand Baie<br>Mauritius</address>
+  <div class="f-branding"> <a href="#" class="f-logo">
+      <img src="logo.png" alt="Water Leak Group" class="logo-img">
+    </a>
+    <address class="f-addr">Grand Baie – Île Maurice<br>Océan Indien</address>
   </div>
+  
   <div class="f-phone">
     <a href="tel:+23057928639" class="f-phone-btn">+230 5792 8639</a>
   </div>
