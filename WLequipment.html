@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Water Leak Equipment</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --yellow: #D4F22A;
+    --dark: #1a1a1a;
+    --text: #222;
+    --white: #fff;
+    --light-bg: #f2f2f2;
+    --border: #e0e0e0;
+  }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.65;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  *[id] {
+    scroll-margin-top: 100px;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    line-height: 1.25;
+    color: var(--dark);
+  }
+
+  h1, h2 { font-weight: 600; }
+
+  h3, h4 { font-weight: 700; }
+
+  p, li, td {
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    line-height: 1.65;
+  }
+
+  p { font-weight: 300; }
+
+  /* ── NAVBAR (aligné WLG) ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    height: 80px;
+    background: #ffffff;
+    border-bottom: 1px solid #dde0ed;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo-icon { width: 38px; height: 38px; }
+  .logo-img { height: 40px; width: auto; display: block; }
+
+  .logo-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1;
+  }
+
+  .logo-text span { color: var(--yellow); }
+
+  .nav-links {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .nav-links a {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #5a5b6e;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: 0.3s;
+  }
+
+  .nav-links a.active,
+  .nav-links a:hover { color: #1a1a2e; }
+
+  .btn-contact {
+    background: var(--yellow);
+    color: var(--dark);
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: 60px;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .btn-contact:hover { background: #c5e020; }
+
+  .btn-yellow {
+    background: var(--yellow);
+    color: var(--dark);
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 11px 22px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .btn-yellow:hover { background: #c5e020; }
+
+  /* ── HERO ── */
+  .hero {
+    background: #F0F0F0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    overflow: hidden;
+    max-height: 400px;
+  }
+
+  .hero-content { padding: 56px 0px 56px 80px; }
+
+  .hero-content h1 { font-size: 38px; margin-bottom: 18px; font-weight: 600; }
+
+  .hero-content h1 .highlight { color: var(--yellow); }
+
+  .hero-content p { font-size: 20px; color: #444; margin-bottom: 10px; max-width: 1000px; }
+
+  .hero-img { overflow: hidden; min-height: 280px; }
+
+  .hero-img img {
+    width: 70%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    margin-left: 250px;
+  }
+
+  /* ── SECTION ALTERNÉE : texte gauche, image droite ── */
+  .section-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    border-bottom: none;
+  }
+
+  .section-split.reverse { direction: rtl; }
+  .section-split.reverse > * { direction: ltr; }
+  /* Règles explicites par section (comme dans l'inspector) */
+  .section-gaz { direction: rtl; }
+  .section-gaz > * { direction: ltr; }
+  .section-canalisations { background: var(--light-bg); }
+
+  .split-content { padding: 35px 70px 35px 85px; }
+
+  .section-split.reverse .split-content { padding: 35px 35px 35px 70px; }
+
+  .split-content h2 { font-size: 30px; margin-bottom: 16px; }
+
+  .split-content p { font-size: 20px; color: #444; margin-bottom: 14px; }
+
+  .split-list {
+    list-style: disc;
+    padding-left: 22px;
+    margin-bottom: 24px;
+  }
+
+  .split-list li {
+    font-size: 20px;
+    color: #333;
+    padding: 4px 0;
+  }
+
+  .split-img {
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    min-height: 220px;
+    padding: 0;
+  }
+
+  .section-split.reverse .split-img {
+    justify-content: flex-start;
+  }
+
+  .split-img img {
+    width: 82%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #gammes .split-img img {
+    width: 82%;
+    height: 100%;
+    object-position: right center;
+  }
+
+  #gammes .split-img {
+    min-height: 220px;
+    padding: 0;
+  }
+
+  .section-canalisations .split-img img {
+    width: 75%;
+    height: 90%;
+    margin-left: 80px;
+  }
+
+  #technologies .split-img img {
+    width: 82%;
+    height: 90%;
+  }
+
+  .section-gaz .split-img img {
+    width: 82%;
+    height: 90%;
+  }
+
+  .section-gaz {
+    background: var(--light-bg);
+    margin-top: 0;
+  }
+
+  .section-hydraulique-block {
+    margin-top: 0;
+  }
+
+  /* ── SECTION GRISE (texte uniquement, fond gris) ── */
+  .section-grey-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--light-bg);
+    border-bottom: none;
+    align-items: start;
+    gap: 0;
+  }
+
+  .grey-col { padding: 56px 48px; }
+
+  .grey-col + .grey-col {
+    border-left: none;
+  }
+
+  .grey-col h2 { font-size: 30px; margin-bottom: 16px; }
+
+  .grey-col p { font-size: 20px; color: #444; margin-bottom: 14px; }
+
+  .grey-col ul {
+    list-style: disc;
+    padding-left: 22px;
+    margin-bottom: 24px;
+  }
+
+  .grey-col ul li {
+    font-size: 20px;
+    color: #333;
+    padding: 4px 0;
+  }
+
+  /* ── HYDRAULIQUE : image gauche, texte droite ── */
+  .section-hydraulique {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    border-bottom: none;
+    background: var(--white);
+  }
+
+  .hydraulique-img {
+    padding: 40px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--light-bg);
+    min-height: 280px;
+  }
+
+  .hydraulique-img img {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .hydraulique-content { padding: 56px 48px; }
+
+  .hydraulique-content h2 { font-size: 30px; margin-bottom: 16px; }
+
+  .hydraulique-content p { font-size: 20px; color: #444; margin-bottom: 14px; }
+
+  .hydraulique-content ul {
+    list-style: disc;
+    padding-left: 22px;
+    margin-bottom: 24px;
+  }
+
+  .hydraulique-content ul li {
+    font-size: 20px;
+    color: #333;
+    padding: 3px 0;
+  }
+
+  /* ── EXPERTISE TERRAIN ── */
+  .section-expertise {
+    background: var(--light-bg);
+    text-align: center;
+    padding: 35px 48px;
+    border-top: none;
+  }
+
+  .section-expertise h2 { font-size: 30px; margin-bottom: 22px; }
+
+  .section-expertise ul {
+    padding-left: 22px;
+    margin: 0 auto;
+    width: fit-content;
+  }
+
+  .section-expertise ul li {
+    font-size: 20px;
+    color: #444;
+    margin-bottom: 8px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    padding: 44px 60px;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .f-branding {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    text-align: center;     
+  }
+  .f-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 19px;
+    color: var(--text);
+    margin-bottom: 12px;
+    margin-right: 300px;
+  }
+  .f-addr {
+    font-style: normal;
+    font-size: 20px;
+    color: #5a5b6e;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-right: 300px;
+    text-align: center;
+  }
+  .f-links { 
+    list-style: none; 
+    display: flex;         
+    gap: 100px;          
+    justify-content: center; 
+    align-items: center; 
+  }
+  .f-links li { margin-bottom: 0; }
+  .f-links a {
+    text-decoration: none;
+    color: #5a5b6e;
+    font-weight: 500;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+  .f-links a:hover { color: #1a1a2e; }
+  .f-phone { display: flex; justify-content: flex-end; }
+  .f-phone-btn {
+    background: var(--yellow);
+    color: var(--dark);
+    padding: 11px 22px;
+    border-radius: 60px;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+    margin-right: -410px;
+  }
+  .f-phone-btn:hover { background: #c5e020; }
+
+  /* ══════════════════════════
+     RESPONSIVE — TABLET
+  ══════════════════════════ */
+  @media (max-width: 768px) {
+    nav {
+      padding: 0 20px;
+      flex-direction: column;
+      height: auto;
+      padding-bottom: 15px;
+    }
+    .nav-links {
+      position: static;
+      transform: none;
+      margin: 15px 0;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .logo {
+      margin-top: 10px;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 900px) {
+
+    .hero { grid-template-columns: 1fr; }
+    .hero-img { order: -1; min-height: 220px; }
+    .hero-content { padding: 36px 24px; }
+
+    .section-split { grid-template-columns: 1fr; direction: ltr; }
+    .section-split.reverse { direction: ltr; }
+    .split-img { order: -1; min-height: 220px; }
+    .split-content { padding: 36px 24px; }
+
+    .section-grey-split { grid-template-columns: 1fr; }
+    .grey-col { padding: 36px 24px; }
+    .grey-col + .grey-col { border-left: none; border-top: none; }
+
+    .section-hydraulique { grid-template-columns: 1fr; }
+    .hydraulique-img { padding: 36px 24px; min-height: auto; }
+    .hydraulique-content { padding: 36px 24px; }
+
+    .section-expertise { padding: 40px 24px; }
+    footer { grid-template-columns: 1fr; text-align: center; padding: 40px 20px; }
+    footer > div:first-child { margin-left: 0; }
+    .f-phone { justify-content: center; }
+  }
+
+  @media (max-width: 560px) {
+    h1, h2, h3, h4 { font-size: 22px; }
+    p, li, td { font-size: 16px; }
+    .btn-yellow, .btn-dark { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="logo">
+    <img src="wlequipment.png" alt="Water Leak Equipment" class="logo-img">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#accueil" class="active">Accueil</a></li>
+    <li><a href="#gammes">Gammes produits</a></li>
+    <li><a href="#technologies">Technologies</a></li>
+  </ul>
+  <a href="tel:+2305792863" class="btn-contact">+230 5792 8639</a>
+</nav>
+
+<!-- HERO -->
+<section id="accueil" class="hero">
+  <div class="hero-content">
+    <h1>Équipements professionnels pour la détection de fuite <span class="highlight">non destructive</span></h1>
+    <p>Technologies terrain sélectionnées pour leur précision, leur fiabilité et leur performance opérationnelle.</p>
+    <p>Solutions utilisées par des experts terrain – déployées à l'échelle de <br>l'océan Indien.</p>
+  </div>
+  <div class="hero-img">
+    <img src="headereq.png" alt="Équipements de détection" />
+  </div>
+</section>
+
+<!-- INSPECTION VIDÉO — texte gauche, image droite -->
+<section id="gammes" class="section-split">
+  <div class="split-content">
+    <h2>Inspection vidéo</h2>
+    <p>Inspection précise des réseaux, canalisations et structures techniques, même en zones difficiles d'accès.</p>
+    <ul class="split-list">
+      <li>Caméras portables</li>
+      <li>Systèmes sur enrouleur</li>
+      <li>Haute définition</li>
+    </ul>
+    <a href="#" class="btn-yellow">Voir les équipements</a>
+  </div>
+  <div class="split-img">
+    <img src="inspection.png" alt="Inspection vidéo" />
+  </div>
+</section>
+
+<!-- INSPECTION RÉSEAUX — image gauche (gris), texte droite -->
+<section class="section-split reverse section-canalisations">
+  <div class="split-content">
+    <h2>Inspection réseaux et canalisations</h2>
+    <p>Solutions adaptées aux réseaux étendus et environnements techniques complexes.</p>
+    <ul class="split-list">
+      <li>Caméras longue portée</li>
+      <li>Inspection réseaux enterrés</li>
+      <li>Applications intensives terrain</li>
+    </ul>
+    <a href="#" class="btn-yellow">Voir la gamme</a>
+  </div>
+  <div class="split-img">
+    <img src="canalisation.png" alt="Inspection réseaux" />
+  </div>
+</section>
+
+<!-- DÉTECTION ACOUSTIQUE — texte gauche, image droite -->
+<section id="technologies" class="section-split">
+  <div class="split-content">
+    <h2>Détection acoustique</h2>
+    <p>Localisation précise des fuites sur réseaux enterrés.</p>
+    <ul class="split-list">
+      <li>Corrélation acoustique</li>
+      <li>Écoute terrain haute précision</li>
+      <li>Systèmes complets</li>
+    </ul>
+    <a href="#" class="btn-yellow">Voir la fiche technique</a>
+  </div>
+  <div class="split-img">
+    <img src="acoustique.png" alt="Détection acoustique" />
+  </div>
+</section>
+
+<!-- DÉTECTION GAZ TRACEUR — image gauche, texte droite, fond gris -->
+<section class="section-split reverse section-gaz">
+  <div class="split-content">
+    <h2>Détection par gaz traceur</h2>
+    <p>Solution avancée pour les fuites invisibles et complexes.</p>
+    <ul class="split-list">
+      <li>Haute précision</li>
+      <li>Réseaux enterrés</li>
+      <li>Structures techniques</li>
+    </ul>
+    <a href="#" class="btn-yellow">Voir la fiche technique</a>
+  </div>
+  <div class="split-img">
+    <img src="gaz.png" alt="Détection par gaz traceur" />
+  </div>
+</section>
+
+<!-- HYDRAULIQUE — texte gauche, image droite -->
+<section class="section-split section-hydraulique-block">
+  <div class="split-content">
+    <h2>Équipements réseaux hydrauliques</h2>
+    <p>Équipements spécialisés pour la recherche de fuite sur réseaux hydrauliques et installations techniques.</p>
+    <ul class="split-list">
+      <li>Kits de pression</li>
+      <li>Obturateurs</li>
+      <li>Packs d'intervention</li>
+    </ul>
+    <a href="#" class="btn-yellow">Voir les équipements</a>
+  </div>
+  <div class="split-img">
+    <img src="piscine.png" alt="Équipements réseaux hydrauliques" />
+  </div>
+</section>
+
+<!-- EXPERTISE TERRAIN -->
+<section class="section-expertise">
+  <h2>Une expertise issue du terrain</h2>
+  <ul>
+    <li>Technologies utilisées en conditions réelles</li>
+    <li>Sélection basée sur l'expérience opérationnelle</li>
+    <li>Aligné avec les méthodes Water Leak Expert</li>
+    <li>Approche professionnelle et non destructive</li>
+  </ul>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-branding">
+    <a href="#" class="f-logo">
+      <img src="wlequipment.png" alt="Water Leak Equipment" class="logo-img">
+    </a>
+    <address class="f-addr">Grand Baie – Île Maurice<br>Océan Indien</address>
+  </div>
+  <div class="f-phone">
+    <a href="tel:+2305792863" class="f-phone-btn">+230 5792 8639</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Water Leak Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #B8E04A;
+    --dark: #1a1a1a;
+    --text: #222;
+    --white: #fff;
+    --light-bg: #f5f5f5;
+    --border: #e0e0e0;
+  }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.65;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  *[id] {
+    scroll-margin-top: 100px;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    line-height: 1.25;
+    color: var(--dark);
+  }
+
+  h1, h2 { font-weight: 400; }
+
+  h3, h4 { font-weight: 700; }
+
+  p, li, td {
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    line-height: 1.65;
+  }
+
+  p { font-weight: 300; }
+
+  /* ── NAVBAR (aligné WLG) ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    height: 80px;
+    background: #ffffff;
+    border-bottom: 1px solid #dde0ed;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo-icon { width: 38px; height: 38px; }
+  .logo-img { height: 40px; width: auto; display: block; }
+
+  .logo-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1;
+  }
+
+  .logo-text span { color: var(--green); }
+
+  .nav-links {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .nav-links a {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #5a5b6e;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: 0.3s;
+  }
+
+  .nav-links a.active,
+  .nav-links a:hover { color: #1a1a2e; }
+
+  .btn-contact {
+    background: var(--green);
+    color: var(--dark);
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 24px;
+    border-radius: 60px;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .btn-contact:hover { background: #a3cc38; }
+
+  /* ── HERO ── */
+  .hero {
+    background: #F8FFF1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    overflow: hidden;
+    max-height: 400px;
+  }
+
+  .hero-content { padding: 56px 0px 56px 80px; }
+
+  .hero-content h1 { font-size: 38px; margin-bottom: 18px; font-weight: 600; }
+
+  .hero-content h1 .highlight { color: var(--green); }
+
+  .hero-content p { font-size: 20px; color: #444; margin-bottom: 10px; }
+
+  .hero-content p strong {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: var(--dark);
+  }
+
+  .hero-img { overflow: hidden; min-height: 280px; }
+
+  .hero-img img {
+    width: 90%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    margin-left: 72px;
+  }
+
+  /* ── SECTION PLEINE LARGEUR ── */
+  .section-full {
+    padding: 35px 48px;
+    background: var(--white);
+    border-bottom: none;
+    margin-left: 24px;
+  }
+
+  .section-full h2 {
+    font-size: 30px;
+    margin-bottom: 18px;
+    font-weight: 600;
+  }
+
+  .section-full p {
+    font-size: 20px;
+    color: #444;
+    margin-bottom: 14px;
+    max-width: 1000px;
+  }
+
+  .bullet-list {
+    list-style: disc;
+    padding-left: 22px;
+    margin: 14px 0 20px;
+  }
+
+  .bullet-list li {
+    font-size: 20px;
+    color: #333;
+    padding: 5px 0;
+  }
+
+  /* ── DESCRIPTION DU PROGRAMME (style enjeux, fond vert) ── */
+  .section-programme {
+    padding: 30px 48px;
+    background: #F8FFF1;
+    border-bottom: none;
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .section-programme h2 { font-size: 30px; margin-bottom: 18px; font-weight: 600; }
+
+  .section-programme .prog-intro {
+    font-size: 20px;
+    color: #444;
+    max-width: 760px;
+    margin: 0 auto 20px;
+  }
+
+  .programme-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: left;
+    max-width: 980px;
+    margin: 0 auto;
+    gap: 0 48px;
+  }
+
+  .programme-cols ul {
+    list-style: disc;
+    padding-left: 22px;
+  }
+
+  .programme-cols ul li {
+    font-size: 20px;
+    color: #333;
+    padding: 5px 0;
+  }
+
+  /* ── BANNER PHOTO ── */
+  .section-banner {
+    position: relative;
+    min-height: 260px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('diplome2.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Parallax on desktop */
+  }
+
+  .section-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+  }
+
+  .banner-text {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 56px 80px;
+    max-width: 1500px;
+  }
+
+  .banner-text p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.5;
+  }
+
+  /* ── RECRUTEMENT — centré titre, deux colonnes ── */
+  .section-recrutement {
+    padding: 35px 48px;
+    background: var(--white);
+    border-bottom: none;
+    margin-left: 24px;
+  }
+
+  .section-recrutement h2 { font-size: 30px; text-align: left; margin-bottom: 28px; font-weight: 600; text-align: center;}
+
+  .recrutement-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .recrutement-col { padding-right: 0; padding-left: 100px; }
+
+  .recrutement-col + .recrutement-col {
+    padding-left: 0;
+    padding-right: 0;
+    border-left: none;
+  }
+
+  .recrutement-col h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--dark);
+  }
+
+  .point-list {
+    list-style: disc;
+    padding-left: 22px;
+  }
+
+  .point-list li {
+    font-size: 20px;
+    color: #333;
+    padding: 4px 0;
+  }
+
+  /* ── PUBLIC CIBLE — fond vert simple ── */
+  .section-public {
+    background-image: url('publiccible.png');
+    background-size: cover;
+    background-position: center;
+    padding: 35px 48px;
+    border-bottom: none;
+    margin-left: 24px;
+  }
+
+  .section-public h2 { font-size: 30px; text-align: left; margin-bottom: 28px; font-weight: 600; text-align: center; }
+
+  .public-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .public-col { padding-right: 0; padding-left: 100px; }
+
+  .public-col + .public-col {
+    padding-left: 0;
+    padding-right: 0;
+    border-left: none;
+  }
+
+  .public-col h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 16px;
+  }
+
+  /* ── POSITIONNEMENT ── */
+  .section-positionnement {
+    background: #F8FFF1;
+    padding: 35px 48px;
+    text-align: center;
+    border-bottom: none;
+    margin-left: 0;
+  }
+
+  .section-positionnement h2 {
+    font-size: 30px;
+    margin-bottom: 28px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .section-positionnement p {
+    font-size: 20px;
+    color: #444;
+    max-width: 900px;
+    margin: 0 auto 18px;
+    line-height: 1.7;
+  }
+
+  .section-positionnement p strong {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: var(--dark);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    padding: 44px 60px;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .f-branding {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    text-align: center;     
+  }
+  .f-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 19px;
+    color: var(--text);
+    margin-bottom: 12px;
+    margin-right: 300px;
+  }
+  .f-addr {
+    font-style: normal;
+    font-size: 20px;
+    color: #5a5b6e;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-right: 300px;
+    text-align: center;
+  }
+  .f-links { 
+    list-style: none; 
+    display: flex;         
+    gap: 100px;          
+    justify-content: center; 
+    align-items: center; 
+  }
+  .f-links li { margin-bottom: 0; }
+  .f-links a {
+    text-decoration: none;
+    color: #5a5b6e;
+    font-weight: 500;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+  .f-links a:hover { color: #1a1a2e; }
+  .f-phone { display: flex; justify-content: flex-end; }
+  .f-phone-btn {
+    background: var(--green);
+    color: var(--dark);
+    padding: 11px 22px;
+    border-radius: 60px;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+    margin-right: -410px;
+  }
+  .f-phone-btn:hover { background: #a3cc38; }
+
+  /* ══════════════════════════
+     RESPONSIVE — TABLET
+  ══════════════════════════ */
+  @media (max-width: 768px) {
+    nav {
+      padding: 0 20px;
+      flex-direction: column;
+      height: auto;
+      padding-bottom: 15px;
+    }
+    .nav-links {
+      position: static;
+      transform: none;
+      margin: 15px 0;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .logo {
+      margin-top: 10px;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 900px) {
+
+    .hero { grid-template-columns: 1fr; }
+    .hero-img { order: -1; min-height: 220px; }
+    .hero-content { padding: 36px 24px; }
+
+    .section-full { padding: 40px 24px; }
+
+    .section-programme { padding: 40px 24px; }
+    .programme-cols { grid-template-columns: 1fr; gap: 0; }
+    .programme-cols ul + ul { margin-top: 8px; }
+
+    .banner-text { padding: 40px 24px; }
+    .banner-text p { font-size: 18px; }
+    .section-banner { background-attachment: scroll; }
+
+    .section-recrutement { padding: 40px 24px; }
+    .recrutement-grid { grid-template-columns: 1fr; }
+    .recrutement-col { padding-right: 0; padding-bottom: 32px; }
+    .recrutement-col + .recrutement-col { padding-left: 0; border-left: none; border-top: none; padding-top: 32px; padding-bottom: 0; }
+
+    .section-public { padding: 40px 24px; }
+    .public-grid { grid-template-columns: 1fr; }
+    .public-col { padding-right: 0; padding-bottom: 32px; }
+    .public-col + .public-col { padding-left: 0; border-left: none; border-top: none; padding-top: 32px; padding-bottom: 0; }
+
+    .section-positionnement { padding: 48px 24px; }
+    footer { grid-template-columns: 1fr; text-align: center; padding: 40px 20px; }
+    footer > div:first-child { margin-left: 0; }
+    .f-phone { justify-content: center; }
+  }
+
+  @media (max-width: 560px) {
+    h1, h2, h3, h4 { font-size: 22px; }
+    p, li, td { font-size: 16px; }
+    .recrutement-col h3 { font-size: 19px; }
+    .public-col h3 { font-size: 19px; }
+    .banner-text p { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="logo">
+    <img src="wlacademy.png" alt="Water Leak Academy" class="logo-img">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#contexte" class="active">Contexte</a></li>
+    <li><a href="#objectifs">Objectifs</a></li>
+    <li><a href="#recrutement">Recrutement</a></li>
+    <li><a href="#positionnement">Positionnement</a></li>
+  </ul>
+  <a href="tel:+2305792863" class="btn-contact">+230 5792 8639</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Formation certifiante en détection de fuites non destructive</h1>
+    <p><strong>Water Leak Academy</strong> propose un programme structuré de formation destiné à former des techniciens spécialisés dans la détection de fuites non destructive.</p>
+    <p>Ce programme est fondé sur un savoir-faire opérationnel développé depuis 2009, avec plus de 30 000 interventions réalisées en France.</p>
+  </div>
+  
+  <div class="hero-img">
+    <img src="diplome.png" alt="Formation technique" />
+  </div>
+</section>
+
+<!-- ENJEUX ET CONTEXTE -->
+<section id="contexte" class="section-full">
+  <h2>Enjeux et contexte</h2>
+  <p>Dans les territoires insulaires, les réseaux d'eau sont confrontés à des défis structurels majeurs :</p>
+  <ul class="bullet-list">
+    <li>Dégradation progressive des infrastructures</li>
+    <li>Pertes importantes en eau (non-revenue water)</li>
+    <li>Coûts croissants pour les exploitants et les usagers</li>
+    <li>Manque de compétences techniques spécialisées localement</li>
+  </ul>
+  <p>Le développement de compétences ciblées constitue un levier stratégique majeur pour améliorer la performance des réseaux et optimiser la gestion de la ressource.</p>
+</section>
+
+<!-- DESCRIPTION DU PROGRAMME -->
+<section id="objectifs" class="section-programme">
+  <h2>Description du programme</h2>
+  <p class="prog-intro">Une formation professionnalisante structurée sur 10 mois, combinant apprentissages théoriques, pratique intensive et immersion terrain.</p>
+  <div class="programme-cols">
+    <ul>
+      <li>Des modules théoriques structurés</li>
+      <li>Une formation aux équipements spécialisés</li>
+      <li>Des mises en situation sur cas réels</li>
+    </ul>
+    <ul>
+      <li>Une immersion progressive en conditions terrain</li>
+      <li>Une évaluation continue des compétences</li>
+      <li>Un encadrement assuré par des formateurs en activité issus du terrain</li>
+    </ul>
+  </div>
+</section>
+
+<!-- BANNER PHOTO -->
+<section class="section-banner">
+  <div class="banner-text">
+    <p>Chaque cohorte est volontairement limitée à 40 participants afin de garantir un encadrement exigeant, une montée en compétence progressive et une application immédiate sur le terrain.</p>
+  </div>
+</section>
+
+<!-- RECRUTEMENT ET SÉLECTION -->
+<section id="recrutement" class="section-recrutement">
+  <h2>Recrutement et sélection</h2>
+  <div class="recrutement-grid">
+    <div class="recrutement-col">
+      <h3>Processus d'admission</h3>
+      <ul class="point-list">
+        <li>Étude des candidatures</li>
+        <li>Analyse des profils</li>
+        <li>Entretiens et évaluation des aptitudes</li>
+        <li>Validation finale des participants</li>
+      </ul>
+    </div>
+    <div class="recrutement-col">
+      <h3>Critères de sélection</h3>
+      <ul class="point-list">
+        <li>Qualité du parcours académique ou professionnel</li>
+        <li>Motivation et capacité d'apprentissage</li>
+        <li>Rigueur, autonomie et sens de l'observation</li>
+        <li>Adéquation avec les exigences du métier</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLIC CIBLE -->
+<section class="section-public">
+  <h2>Public cible</h2>
+  <div class="public-grid">
+    <div class="public-col">
+      <h3>Profils recherchés</h3>
+      <ul class="point-list">
+        <li>Jeunes diplômés souhaitant accéder à un métier technique spécialisé</li>
+        <li>Techniciens en activité souhaitant se spécialiser</li>
+        <li>Professionnels des réseaux et de la maintenance</li>
+      </ul>
+    </div>
+    <div class="public-col">
+      <h3>Pré-requis</h3>
+      <ul class="point-list">
+        <li>Maîtrise du français</li>
+        <li>Niveau opérationnel en anglais apprécié</li>
+        <li>Intérêt pour les métiers techniques terrain</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- POSITIONNEMENT STRATÉGIQUE -->
+<section id="positionnement" class="section-positionnement">
+  <h2>Positionnement stratégique</h2>
+  <p><strong>Water Leak Academy</strong> structure une filière technique spécialisée en détection de fuite non destructive à l'échelle de l'océan Indien.</p>
+  <p>Le programme s'appuie sur une expertise terrain issue de plus de 30 000 interventions réalisées depuis 2009, permettant de former des techniciens immédiatement opérationnels.</p>
+  <p>Il répond aux besoins concrets du marché en développant des compétences techniques directement applicables en conditions réelles.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-branding">
+    <a href="#" class="f-logo">
+      <img src="wlacademy.png" alt="Water Leak Academy" class="logo-img">
+    </a>
+    <address class="f-addr">Grand Baie – Île Maurice<br>Océan Indien</address>
+  </div>
+  <div class="f-phone">
+    <a href="tel:+2305792863" class="f-phone-btn">+230 5792 8639</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Water Leak Expert</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #FF6B1A;
+    --blue-bg: #DDE9EC;
+    --dark: #1a1a1a;
+    --text: #222;
+    --white: #fff;
+    --light-bg: #f2f2f2;
+    --border: #e0e0e0;
+  }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.65;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  *[id] {
+    scroll-margin-top: 100px;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    line-height: 1.25;
+    color: var(--dark);
+  }
+
+  h1, h2 { font-weight: 600; font-family: poppins; }
+
+  h3, h4 { font-weight: 700; }
+
+  p, li, td {
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    line-height: 1.65;
+  }
+
+  p { font-weight: 300; }
+
+  /* ── NAVBAR (aligné WLG) ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    height: 80px;
+    background: #ffffff;
+    border-bottom: 1px solid #dde0ed;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo-icon { width: 38px; height: 38px; }
+  .logo-img { height: 40px; width: auto; display: block; }
+
+  .logo-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1;
+  }
+
+  .logo-text span { color: var(--orange); }
+
+  .nav-links {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .nav-links a {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #5a5b6e;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: 0.3s;
+  }
+
+  .nav-links a.active,
+  .nav-links a:hover { color: #1a1a2e; }
+
+  .btn-contact {
+    background: var(--orange);
+    color: var(--white);
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: 60px;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .btn-contact:hover { background: #e85c0f; }
+
+  .btn-orange {
+    background: var(--orange);
+    color: var(--white);
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .btn-orange:hover { background: #e85c0f; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--blue-bg);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    overflow: hidden;
+    max-height: 460px;
+  }
+
+  .hero-content { padding: 56px 0px 56px 80px; }
+
+  .hero-content h1 { font-size: 38px; margin-bottom: 18px; }
+
+  .hero-content h1 .highlight { color: var(--orange); }
+
+  .hero-content p { font-size: 20px; color: #444; margin-bottom: 10px; }
+
+  .hero-content .hero-bold {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--dark);
+    margin-top: 14px;
+  }
+
+  .hero-img { overflow: hidden; min-height: 280px; }
+
+  .hero-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .stats-bar {
+    display: flex;
+    gap: 32px;
+    padding-top: 18px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  min-width: 180px;
+}
+
+.stat-val {
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--orange);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.stat-lbl {
+  font-size: 18px;
+  font-weight: 300; 
+  color: #5a5b6e;
+  line-height: 1.3;
+  width: 100%; 
+  white-space: nowrap;
+}
+
+
+  /* ── DEUX COLONNES BLANCHES ── */
+  .section-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 35px 70px;
+    background: var(--white);
+    gap: 0;
+  }
+
+  .col-left {
+    padding-right: 56px;
+  }
+
+  .col-right { padding-left: 56px; }
+
+  .section-two-col h2 { font-size: 30px; margin-bottom: 20px; }
+
+  .section-two-col p { font-size: 20px; color: #444; margin-bottom: 12px; }
+
+  .dot-list {
+    list-style: disc;
+    padding-left: 22px;
+    margin-top: 8px;
+  }
+
+  .dot-list li {
+    font-size: 20px;
+    color: #333;
+    padding: 4px 0;
+  }
+
+  .tagline-center {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-top: -30px;
+    padding: 0 48px 35px;
+    background: var(--white);
+    border-top: none;
+    border-bottom: none;
+  }
+
+  /* ── TECHNOLOGIES ── */
+  .section-tech {
+    background: var(--blue-bg);
+    padding: 35px 48px;
+    text-align: center;
+  }
+
+  .section-tech h2 { font-size: 30px; margin-bottom: 24px; }
+
+  .tech-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .tech-list li { font-size: 20px; color: #444; }
+
+  .section-tech .note {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  /* ── RAPPORT TECHNIQUE ── */
+  .section-rapport {
+    background: var(--white);
+    padding: 35px 48px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 56px;
+    align-items: start;
+    border-bottom: none;
+  }
+
+  .section-rapport h2 { font-size: 30px; margin-bottom: 20px; }
+
+  .section-rapport p { font-size: 20px; color: #444; margin-bottom: 18px; max-width: 520px; }
+
+.rapport-content {
+  padding-left: 24px;
+}
+
+  .rapport-label {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--dark);
+  }
+
+  .point-list {
+    list-style: disc;
+    padding-left: 22px;
+  }
+
+  .point-list li { font-size: 20px; color: #333; padding: 4px 0; }
+
+  .rapport-img {
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    display: block;
+    margin-right: 70px;
+  }
+
+  /* ── MAP ── */
+  .section-map {
+    position: relative;
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .section-map img.map-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .map-content {
+    position: relative;
+    z-index: 2;
+    padding: 64px 48px;
+  }
+
+  .map-content h2 { font-size: 30px; margin-bottom: 16px; }
+
+  .map-content p { font-size: 20px; color: #333; margin-bottom: 32px; max-width: 720px; margin-left: auto; margin-right: auto; }
+
+  /* ── CLIENTS & PARTENAIRES ── */
+  .section-clients {
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    border-bottom: none;
+    overflow: hidden;
+    margin-top: -21px;
+  }
+
+  .clients-img { overflow: hidden; min-height: 320px; }
+
+  .clients-img img {
+    width: 80%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .clients-content { padding: 56px 48px 56px 0px; }
+
+  .clients-content h2 { font-size: 30px; margin-bottom: 16px; }
+
+  .clients-content p { font-size: 20px; color: #444; margin-bottom: 16px; }
+
+  .clients-list {
+    list-style: disc;
+    padding-left: 22px;
+    margin: 14px 0 18px;
+  }
+
+  .clients-list li {
+    font-size: 20px;
+    color: #333;
+    padding: 4px 0;
+  }
+
+  /* ── EXPERTISE TERRAIN ── */
+  .section-expertise {
+    background: var(--blue-bg);
+    padding: 35px 48px;
+    text-align: center;
+    margin-top: -5px;
+  }
+
+  .section-expertise h2 { font-size: 30px; margin-bottom: 24px; }
+
+  .expertise-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 auto;
+    width: fit-content;
+  }
+
+  .expertise-list li {
+    font-size: 20px;
+    color: #444;
+    margin-bottom: 8px;
+  }
+
+  /* ── PLATEAU TECHNIQUE ── */
+  .section-plateau {
+    background: #ffffff;
+    display: grid;
+    grid-template-columns: 62% 38%;
+    align-items: center;
+    overflow: hidden;
+    max-height: 510px;
+  }
+
+  .plateau-content {
+    padding: 56px 28px 56px 176px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .plateau-content h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--dark);
+    margin-bottom: 36px;
+    margin-right: 100px;
+  }
+
+  .plateau-table {
+    width: fit-content;
+    border-collapse: collapse;
+    margin-bottom: 36px;
+  }
+
+  .plateau-table td {
+    font-size: 22px;
+    color: #333;
+    padding: 7px 0;
+    vertical-align: middle;
+  }
+
+  .plateau-table td:first-child {
+    padding-right: 75px;
+    white-space: nowrap;
+  }
+
+  .plateau-table td:first-child strong {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+  }
+
+  .plateau-table td:nth-child(2) {
+    text-align: center;
+    color: #666;
+    width: 2px;
+    padding: 0 2px;
+  }
+
+  .plateau-table td:last-child {
+    font-weight: 400;
+    padding-left: 0;
+    white-space: nowrap;
+  }
+
+  .phone-pill {
+    display: block;
+    width: fit-content;
+    background: var(--orange);
+    color: var(--white);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    padding: 14px 42px;
+    border-radius: 50px;
+    margin: 32px -60px 0 auto;
+    text-decoration: none;
+  }
+
+  .plateau-img { position: relative; overflow: hidden; min-height: 360px; }
+
+  .plateau-img img {
+    width: 76%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right center;
+    display: block;
+    margin-left: 0%;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--white);
+    padding: 44px 60px;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .f-branding {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    text-align: center;     
+  }
+  .f-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 19px;
+    color: var(--text);
+    margin-bottom: 12px;
+    margin-right: 300px;
+  }
+  .f-addr {
+    font-style: normal;
+    font-size: 20px;
+    color: #5a5b6e;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-right: 300px;
+    text-align: center;
+  }
+  .f-links { 
+    list-style: none; 
+    display: flex;         
+    gap: 100px;          
+    justify-content: center; 
+    align-items: center; 
+  }
+  .f-links li { margin-bottom: 0; }
+  .f-links a {
+    text-decoration: none;
+    color: #5a5b6e;
+    font-weight: 500;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+  .f-links a:hover { color: #1a1a2e; }
+  .f-phone { display: flex; justify-content: flex-end; }
+  .f-phone-btn {
+    background: var(--orange);
+    color: var(--white);
+    padding: 11px 22px;
+    border-radius: 60px;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+    margin-right: -410px;
+  }
+  .f-phone-btn:hover { background: #e85c0f; }
+
+  /* ══════════════════════════
+     RESPONSIVE — TABLET
+  ══════════════════════════ */
+  @media (max-width: 768px) {
+    nav {
+      padding: 0 20px;
+      flex-direction: column;
+      height: auto;
+      padding-bottom: 15px;
+    }
+    .nav-links {
+      position: static;
+      transform: none;
+      margin: 15px 0;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .logo {
+      margin-top: 10px;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 900px) {
+
+    .hero { grid-template-columns: 1fr; }
+    .hero-img { order: -1; min-height: 220px; }
+    .hero-content { padding: 36px 24px; }
+
+    .section-two-col { grid-template-columns: 1fr; padding: 40px 24px; }
+    .col-left { padding-right: 0; border-right: none; border-bottom: none; padding-bottom: 36px; margin-bottom: 36px; }
+    .col-right { padding-left: 0; }
+
+    .tagline-center { padding: 20px 24px; font-size: 16px; }
+    .section-tech { padding: 40px 24px; }
+
+    .section-rapport { grid-template-columns: 1fr; padding: 40px 24px; gap: 28px; }
+    .rapport-img { width: 100%; max-width: 340px; }
+
+    .map-content { padding: 48px 24px; }
+
+    .section-clients { grid-template-columns: 1fr; }
+    .clients-img { min-height: 220px; }
+    .clients-content { padding: 36px 24px; }
+
+    .section-expertise { padding: 40px 24px; }
+
+    .section-plateau { grid-template-columns: 1fr; }
+    .plateau-content { padding: 40px 24px; }
+    .plateau-img { min-height: 260px; }
+
+    footer { grid-template-columns: 1fr; text-align: center; padding: 40px 20px; }
+    footer > div:first-child { margin-left: 0; }
+    .f-phone { justify-content: center; }
+  }
+
+  @media (max-width: 560px) {
+    h1, h2, h3, h4 { font-size: 22px; }
+    p, li, td { font-size: 16px; }
+    .tagline-center { font-size: 14px; }
+    .section-tech .note { font-size: 14px; }
+    .rapport-label { font-size: 16px; }
+    .phone-pill { font-size: 15px; padding: 12px 24px; }
+    .badge-disponibilite { font-size: 13px; padding: 12px 16px; bottom: 16px; right: 12px; }
+    .plateau-content h2 { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="logo">
+    <img src="wlexpert.png" alt="Water Leak Expert" class="logo-img">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#accueil" class="active">Accueil</a></li>
+    <li><a href="#rapports">Rapports techniques</a></li>
+    <li><a href="#expertises">Nos Expertises</a></li>
+  </ul>
+  <a href="tel:+2305792863" class="btn-contact">+230 5792 8639</a>
+</nav>
+
+<!-- HERO -->
+<section id="accueil" class="hero">
+  <div class="hero-content">
+    <h1>Détection de fuites <span class="highlight">non destructive</span><br>interventions de haute précision</h1>
+    <p>Interventions rapides, diagnostics fiables et méthodes non destructives adaptées à tous types de réseaux.</p>
+    <p class="hero-bold">Rapports exploitables pour assurances, syndics et experts</p>
+    <div class="stats-bar">
+      <div class="stat">
+        <span class="stat-val">+30 000</span>
+        <span class="stat-lbl">interventions</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">+15 ans</span>
+        <span class="stat-lbl">d’expertise</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">Savoir-faire</span>
+        <span class="stat-lbl">issu du terrain français</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="experthead.png" alt="Water Leak Expert" />
+  </div>
+</section>
+
+<!-- NOS DOMAINES + MÉTHODES -->
+<section class="section-two-col">
+  <div class="col-left">
+    <h2>Nos domaines d'intervention</h2>
+    <ul class="dot-list">
+      <li>Réseaux d'eau potable</li>
+      <li>Réseaux enterrés</li>
+      <li>Piscines et bassins</li>
+      <li>Bâtiments résidentiels et tertiaires</li>
+      <li>Hôtels, golfs et centres aquatiques</li>
+      <li>Infrastructures techniques</li>
+    </ul>
+  </div>
+  <div class="col-right">
+    <h2>Méthodes utilisées</h2>
+    <p>Des technologies avancées permettant une localisation précise sans destruction :</p>
+    <ul class="dot-list">
+      <li>Écoute électroacoustique</li>
+      <li>Gaz traceur</li>
+      <li>Corrélation</li>
+      <li>Inspection vidéo</li>
+      <li>Caméras thermiques</li>
+    </ul>
+  </div>
+</section>
+
+<div class="tagline-center">Chaque méthode est adaptée en fonction de la configuration du réseau et du type de fuite.</div>
+
+<!-- TECHNOLOGIES -->
+<section class="section-tech">
+  <h2>Technologies utilisées</h2>
+  <ul class="tech-list">
+    <li>Gaz traceur</li>
+    <li>Détection acoustique</li>
+    <li>Caméra thermique</li>
+    <li>Inspection des réseaux</li>
+  </ul>
+  <p class="note">Chaque intervention est adaptée en fonction de la configuration et de la complexité du site.</p>
+</section>
+
+<!-- RAPPORT TECHNIQUE -->
+<section id="rapports" class="section-rapport">
+  <div class="rapport-content">
+    <h2>Rapport technique exploitable sous 48h</h2>
+    <p>Chaque intervention donne lieu à un rapport structuré, précis et immédiatement exploitable dans un cadre assurantiel, technique ou judiciaire.</p>
+    <p class="rapport-label">Nos rapports incluent :</p>
+    <ul class="point-list">
+      <li>Localisation précise de la fuite</li>
+      <li>Analyse technique des causes</li>
+      <li>Constats détaillés avec supports visuels</li>
+      <li>Préconisations de réparation</li>
+    </ul>
+  </div>
+  <div>
+    <img class="rapport-img" src="rapport.png" alt="Rapport technique" />
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="section-map">
+  <img class="map-bg" src="carte.png" alt="Carte Île Maurice" />
+  <div class="map-content">
+    <h2>Nos équipes interviennent<br>quotidiennement à l'Île Maurice</h2>
+    <p>Interventions régionales pour projets structurés :<br>hôtels, resorts, golfs, spas, centres aquatiques et infrastructures techniques.</p>
+    <a href="#" class="btn-orange">Décrire ma fuite</a>
+  </div>
+</section>
+
+<!-- CLIENTS & PARTENAIRES -->
+<section class="section-clients">
+  <div class="clients-img">
+    <img src="client.png" alt="Clients et partenaires" />
+  </div>
+  <div class="clients-content">
+    <h2>Nos clients et partenaires</h2>
+    <p>Nous intervenons auprès des particuliers comme des professionnels, avec des solutions adaptées à chaque situation et un haut niveau d'exigence technique.</p>
+    <ul class="clients-list">
+      <li>Particuliers</li>
+      <li>Syndics et gestionnaires immobiliers</li>
+      <li>Compagnies d'assurance</li>
+      <li>Experts techniques et judiciaires</li>
+      <li>Hôtels, golfs et infrastructures tertiaires</li>
+    </ul>
+    <p>Des interventions adaptées aux environnements simples comme aux situations techniques les plus complexes.</p>
+  </div>
+</section>
+
+<!-- EXPERTISE TERRAIN -->
+<section id="expertises" class="section-expertise">
+  <h2>Une expertise terrain éprouvée</h2>
+  <ul class="expertise-list">
+    <li>Interventions sur environnements techniques complexes</li>
+    <li>Méthodes adaptées à chaque configuration</li>
+    <li>Diagnostics fiables et exploitables immédiatement</li>
+    <li>Approche terrain issue de situations réelles</li>
+  </ul>
+</section>
+
+<!-- PLATEAU TECHNIQUE -->
+<section class="section-plateau">
+  <div class="plateau-content">
+    <h2>Plateau technique</h2>
+    <table class="plateau-table">
+      <tr>
+        <td>Du <strong>Lundi</strong> au <strong>vendredi</strong></td>
+        <td>|</td>
+        <td>8h – 19h</td>
+      </tr>
+      <tr>
+        <td>Gestion des <strong>RDV</strong></td>
+        <td>|</td>
+        <td>dans la journée</td>
+      </tr>
+      <tr>
+        <td>Gestion des <strong>mails</strong></td>
+        <td>|</td>
+        <td>7/7 jours</td>
+      </tr>
+    </table>
+    <a href="tel:+2305792863" class="phone-pill">+230 5792 8639</a>
+  </div>
+  <div class="plateau-img">
+    <img src="plateau.png" alt="Opérateur service client" />
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-branding">
+    <a href="#" class="f-logo">
+      <img src="wlexpert.png" alt="Water Leak Expert" class="logo-img">
+    </a>
+    <address class="f-addr">Grand Baie – Île Maurice<br>Océan Indien</address>
+  </div>
+  <div class="f-phone">
+    <a href="tel:+2305792863" class="f-phone-btn">+230 5792 8639</a>
+  </div>
+</footer>
+
+</body>
+</html>
